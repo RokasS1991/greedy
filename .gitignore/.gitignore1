@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <cs50.h>
+
+
+int main(void)
+{
+    /// user gives amount, float for decimal point
+    float n;
+    //// when entered in dolars,coins transfer to coins (* 100)
+    int x;
+    //// amount of coins given in exchange + 1 each time i can use largest coin, start at 0
+    int coins = 0;
+
+    do
+    {
+        //// print to user what we want and get n by following n = get_float (amount of change he needs)
+        printf("O hai! How much change is owed?\n");
+        n = get_float();
+    }
+    ///// while n is negative is true, we ask again for user to give possitive number which will be float example 0.1
+    while (n < 0);
+
+    ///// we exchange dolars to coins by multiplaing by 100
+    n = n * 100;
+    ////// we give integer value in cents, as x is int, we get in intigers.
+    x = n;
+    /////  we have loop function to give first biggest possible coins if x is bigger than 25 we do what in {} if less we go to next while
+    while (x >= 25)
+    {
+        ///// each time we make loop coins adds +1 we could use coins++ function
+        coins = coins +1;
+        ///// each time we substract x amount to get what is left, if its less than 25 we go to next while
+        x = x - 25;
+    }
+    ///// do same as with first loop
+    while (x >= 10)
+    {
+        coins = coins + 1;
+        x = x - 10;
+    }
+    while (x >= 5)
+    {
+        coins = coins + 1;
+        x = x - 5;
+    }
+    while (x >= 1)
+    {
+        coins = coins + 1;
+        x = x - 1;
+    }
+    ////// 1 is smallet coin possbile, so after we cant substract 1 we get total amount of coins and print it to screen.
+    printf("%i\n", coins);
+
+}
